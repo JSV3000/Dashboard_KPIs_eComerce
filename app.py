@@ -12,7 +12,7 @@ from bokeh.embed import file_html
 from bokeh.resources import CDN
 import streamlit.components.v1 as components
 
-# Configuracion de la pagina y estilo oscuro (#0E1117)
+# Configuracion de la pagina
 st.set_page_config(
     page_title="Dashboard E-Commerce KPIs",
     layout="wide"
@@ -43,7 +43,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Renderizar cada grafico de Bokeh ocupando el 100% de su columna
+# Renderizar cada grafico de Bokeh
 def mostrar_bokeh(fig, height=340):
     fig.sizing_mode = "stretch_width"
     fig.background_fill_color = "#161B22"
@@ -95,7 +95,7 @@ def generar_datos(semilla=42):
     })
     return df
 
-# Barra lateral para controles interactivos
+# Barra lateral
 st.sidebar.header("Configuracion")
 semilla = st.sidebar.slider("Semilla de simulacion", min_value=1, max_value=100, value=42)
 df = generar_datos(semilla)
@@ -108,7 +108,7 @@ rango_meses = st.sidebar.multiselect(
 
 df_filtrado = df[df['Mes'].isin(rango_meses)] if rango_meses else df
 
-# Titulo principal
+# Titulo 
 st.title("Dashboard de KPIs - E-Commerce")
 st.markdown("Monitoreo anual de rendimiento comercial, conversion y retencion de clientes.")
 st.markdown("Trabajo hecho por Josue Sifuentes Valdez - Daniel Croche Soto")
@@ -134,7 +134,7 @@ st.markdown("---")
 
 meses_lista = df_filtrado['Mes'].tolist()
 
-# Graficos con Bokeh (cada uno con su propio ColumnDataSource)
+# Graficos con Bokeh 
 g_col1, g_col2 = st.columns(2)
 
 with g_col1:
